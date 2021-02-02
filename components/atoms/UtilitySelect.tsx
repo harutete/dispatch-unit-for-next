@@ -20,12 +20,12 @@ const UtilitySelect: React.FC<Props> = ({ label, categories }) => {
   const classes = useStyles()
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">
+      <InputLabel id="select-category">
         {label}
       </InputLabel>
       <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
+        labelId="select-category-label"
+        id="select-category"
         label={label}
       >
         {categories.map(category =>
