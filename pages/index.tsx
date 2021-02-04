@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import Layout from '../components/layout/Layout'
 import UtilitySelect from '../components/atoms/UtilitySelect'
+import LoadingIcon from '../components/atoms/LoadingIcon'
 
 const fetcher = (query) =>
   fetch('/api/graphql', {
@@ -10,24 +11,24 @@ const fetcher = (query) =>
     },
     body: JSON.stringify({ query }),
   })
-    .then((res) => res.json())
-    .then((json) => json.data)
+    .then((res) => {
+      return res.json()
+    })
+    .then((json) => {
+      return json.data
+    })
 
 const Home = () => {
-  const { data, error } = useSWR('{ users { name } }', fetcher)
-
+  const { data, error } = useSWR('{ members { member_name } }', fetcher)
   if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  if (!data) return <LoadingIcon />
 
-  const { users } = data
+  const { members } = data
+  const formattedMembers = members.map(member => member.member_name)
   const unitType = ['comedy', 'action', 'serious']
   return (
     <Layout>
-      <div>
-        {users.map((user, i) => (
-          <div key={i}>{user.name}</div>
-        ))}
-      </div>
+      <UtilitySelect label="members"  categories={formattedMembers} />
       <p>Select unit type.</p>
       <UtilitySelect label="UnitType"  categories={unitType} />
     </Layout>
