@@ -11,6 +11,9 @@ const MyApp = ({ Component, pageProps }) =>  {
     palette: {
       primary: {
         main: '#e6e6df'
+      },
+      text: {
+        primary: '#666666'
       }
     },
   })
