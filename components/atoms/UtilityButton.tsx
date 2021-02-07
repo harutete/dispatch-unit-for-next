@@ -1,8 +1,11 @@
 import { Button } from '@material-ui/core'
 
-const UtilityButton: React.FC = ({children}) => (
-  <Button variant="contained">
-    {children}
+type Props = {
+  onClick: () => void
+}
+const UtilityButton: React.FC<Props> = (props) => (
+  <Button variant="contained" fullWidth onClick={props.onClick}>
+    {props.children}
   </Button>
 )
 

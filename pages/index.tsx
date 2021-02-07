@@ -37,15 +37,20 @@ const Home = () => {
   const { members } = data
   const formattedMembers = members.map(member => member.member_name)
   const unitType = ['comedy', 'action', 'serious']
+  const clickHandler = () => {
+    console.log('clickHandler')
+  }
   return (
     <Layout>
       <p>Select member.</p>
-      <UtilitySelect label="members"  categories={formattedMembers} />
-      <p>Select unit type.</p>
-      <UtilitySelect label="UnitType"  categories={unitType} />
-      <UtilityButton>
-        Dispatch!
-      </UtilityButton>
+      <form>
+        <UtilitySelect label="members"  categories={formattedMembers} />
+        <p>Select unit type.</p>
+        <UtilitySelect label="UnitType"  categories={unitType} />
+        <UtilityButton onClick={clickHandler}>
+          Dispatch!
+        </UtilityButton>
+      </form>
     </Layout>
   )
 }
