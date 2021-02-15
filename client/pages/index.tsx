@@ -4,7 +4,7 @@ import UtilitySelect from '../components/atoms/UtilitySelect'
 import UtilityButton from '../components/atoms/UtilityButton'
 import LoadingIcon from '../components/atoms/LoadingIcon'
 import { FormControl } from '@material-ui/core'
-import { GET_MEMBERS } from '../query/queries'
+import { GET_MEMBERS } from '../query/'
 
 
 const Home = () => {
