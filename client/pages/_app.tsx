@@ -1,3 +1,4 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
@@ -5,6 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 // summer ffc800
 // autumn ff9b63
 // winter 6ac1ff
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+})
 
 const MyApp = ({ Component, pageProps }) =>  {
   const theme = createMuiTheme({
@@ -18,10 +24,12 @@ const MyApp = ({ Component, pageProps }) =>  {
     },
   })
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
 
