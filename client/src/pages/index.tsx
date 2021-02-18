@@ -8,6 +8,15 @@ import { useCompanyMembersQuery } from '../graphql/generated/graphql'
 
 const Home = () => {
   const { loading, data, error } = useCompanyMembersQuery()
+
+  if (loading) {
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    )
+  }
+
   if (error)  {
     console.log({error})
     return (
