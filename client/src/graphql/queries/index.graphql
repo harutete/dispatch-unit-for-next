@@ -1,0 +1,6 @@
+query companyMembers {
+  members {
+    member_id
+    member_name
+  }
+}

@@ -4,11 +4,10 @@ import UtilitySelect from '../components/atoms/UtilitySelect'
 import UtilityButton from '../components/atoms/UtilityButton'
 import LoadingIcon from '../components/atoms/LoadingIcon'
 import { FormControl } from '@material-ui/core'
-import { GET_MEMBERS } from '../query/'
-
+import { useCompanyMembersQuery } from '../graphql/generated/graphql'
 
 const Home = () => {
-  const { loading, data, error } = useQuery(GET_MEMBERS)
+  const { loading, data, error } = useCompanyMembersQuery()
   if (error)  {
     console.log({error})
     return (
