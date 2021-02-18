@@ -12,7 +12,7 @@ const Home = () => {
   if (loading) {
     return (
       <Layout>
-        <div>Loading...</div>
+        <LoadingIcon />
       </Layout>
     )
   }
@@ -28,7 +28,7 @@ const Home = () => {
   if (!data) {
     return (
       <Layout>
-        <LoadingIcon />
+        <div>Not contents</div>
       </Layout>
     )
   }
