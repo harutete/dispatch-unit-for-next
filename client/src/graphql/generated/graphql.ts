@@ -58,7 +58,14 @@ export type CompanyMembersQuery = (
   & { members: Array<(
     { __typename?: 'Member' }
     & Pick<Member, 'member_id' | 'member_name'>
-  )> }
+  )>, linkSkills: Array<Maybe<(
+    { __typename?: 'LinkSkill' }
+    & Pick<LinkSkill, 'category' | 'category_name' | 'effect' | 'skill_name' | 'is_act2'>
+    & { members: Array<Maybe<(
+      { __typename?: 'SkillMembers' }
+      & Pick<SkillMembers, 'id' | 'name'>
+    )>> }
+  )>> }
 );
 
 
@@ -67,6 +74,17 @@ export const CompanyMembersDocument = gql`
   members {
     member_id
     member_name
+  }
+  linkSkills {
+    category
+    category_name
+    effect
+    skill_name
+    is_act2
+    members {
+      id
+      name
+    }
   }
 }
     `;
