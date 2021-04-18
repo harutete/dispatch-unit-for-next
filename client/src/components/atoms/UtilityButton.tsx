@@ -1,12 +1,15 @@
-import { Button } from '@material-ui/core'
+import { Button, ButtonProps } from '@material-ui/core'
 
 type Props = {
-  onClick: () => void
-}
-const UtilityButton: React.FC<Props> = (props) => (
-  <Button variant="contained" fullWidth onClick={props.onClick}>
-    {props.children}
+  label: string
+} & ButtonProps
+
+export const UtilityButton = ({
+  onClick,
+  label,
+  ...props
+}: Props): JSX.Element => (
+  <Button variant="contained" onClick={onClick} {...props}>
+    {label}
   </Button>
 )
-
-export default UtilityButton

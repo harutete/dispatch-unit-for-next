@@ -1,7 +1,5 @@
 import CircularProgress from '@material-ui/core/FormControl'
 
-const LoadingIcon: React.FC = () => (
+export const LoadingIcon = (): JSX.Element => (
   <CircularProgress color="primary" />
 )
-
-export default LoadingIcon

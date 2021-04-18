@@ -1,30 +1,55 @@
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControlProps,
+} from '@material-ui/core'
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 
 type Props = {
+  value: string
   label: string
-  categories: string[]
-}
+  categories: { id: number; value: string }[]
+  handleChange: (
+    event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>,
+    child: React.ReactNode
+  ) => void
+} & FormControlProps
 
-const UtilitySelect: React.FC<Props> = ({ label, categories }) => (
-  <FormControl variant="outlined" fullWidth>
-    <InputLabel id="select-category">
-      {label}
-    </InputLabel>
-    <Select
-      labelId="select-category-label"
-      id="select-category"
-      label={label}
-    >
-      {categories.map(category =>
-        <MenuItem value={category} key={`category_${category}`}>
-          {category}
-        </MenuItem>
-      )}
-    </Select>
-  </FormControl>
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      minWidth: '200px',
+    },
+  })
 )
 
-export default UtilitySelect
+export const UtilitySelect = ({
+  value,
+  label,
+  categories,
+  handleChange,
+  ...props
+}: Props): JSX.Element => {
+  const classes = useStyles()
+
+  return (
+    <FormControl variant="outlined" className={classes.root} {...props}>
+      <InputLabel id="select-category">{label}</InputLabel>
+      <Select
+        labelId="select-category-label"
+        id="select-category"
+        label={label}
+        value={value}
+        onChange={handleChange}
+      >
+        {categories.map((category) => (
+          <MenuItem value={category.id} key={`category_${category.id}`}>
+            {category.value}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  )
+}
