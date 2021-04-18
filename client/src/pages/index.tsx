@@ -1,15 +1,15 @@
-import { useCompanyMembersQuery } from '../graphql/generated/graphql'
+import { useCompanyMembersQuery, Member } from '../graphql/generated/graphql'
 import { useSelect } from '../hooks/useSelect'
 import { useDispatchUnit } from '../hooks/useDispatchUnit'
 import { formattedMembers } from '../utils/formattedData'
 
-import { Box } from '@material-ui/core'
+import { Box, Avatar } from '@material-ui/core'
 
 import { UtilitySelect } from '../components/atoms/UtilitySelect'
 import { UtilityButton } from '../components/atoms/UtilityButton'
 import { LoadingIcon } from '../components/atoms/LoadingIcon'
 
-const UNIT_TYPES = [
+export const UNIT_TYPES = [
   {
     id: 1,
     value: 'comedy',
@@ -44,8 +44,14 @@ const Home = (): JSX.Element => {
   const { members, linkSkills } = data
   const formatMembers = formattedMembers(members)
   const handleDispatchUnit = () => {
-    dispatchUnit({ member: member.value, unitType: unitType.value, linkSkills })
+    console.log('click')
+    dispatchUnit({
+      memberId: member.value,
+      unitTypeId: unitType.value,
+      linkSkills,
+    })
   }
+  console.log({ unit })
   return (
     <Box mt={4}>
       <form>
@@ -74,7 +80,15 @@ const Home = (): JSX.Element => {
           />
         </Box>
       </form>
-      {unit !== null && <p>dispatch</p>}
+      {unit !== null &&
+        unit.map((item) => (
+          <div key={item.skill_name}>
+            <p>{item.skill_name}</p>
+            {item.members.map((member: Member) => (
+              <Avatar key={member.member_id}>{member.member_name}</Avatar>
+            ))}
+          </div>
+        ))}
     </Box>
   )
 }
