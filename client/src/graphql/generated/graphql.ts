@@ -24,18 +24,18 @@ export type Query = {
 
 export type Member = {
   __typename?: 'Member';
-  member_id?: Maybe<Scalars['Int']>;
-  member_name?: Maybe<Scalars['String']>;
+  member_id: Scalars['Int'];
+  member_name: Scalars['String'];
 };
 
 export type LinkSkill = {
   __typename?: 'LinkSkill';
-  category?: Maybe<Scalars['String']>;
+  category: Scalars['String'];
   category_name?: Maybe<Scalars['String']>;
-  effect?: Maybe<Scalars['Int']>;
-  skill_name?: Maybe<Scalars['String']>;
+  effect: Scalars['Int'];
+  skill_name: Scalars['String'];
   is_act2?: Maybe<Scalars['Boolean']>;
-  members: Array<Maybe<Member>>;
+  members: Array<Member>;
 };
 
 export enum CacheControlScope {
@@ -55,10 +55,10 @@ export type CompanyMembersQuery = (
   )>, linkSkills: Array<Maybe<(
     { __typename?: 'LinkSkill' }
     & Pick<LinkSkill, 'category' | 'category_name' | 'effect' | 'skill_name' | 'is_act2'>
-    & { members: Array<Maybe<(
+    & { members: Array<(
       { __typename?: 'Member' }
       & Pick<Member, 'member_id' | 'member_name'>
-    )>> }
+    )> }
   )>> }
 );
 
