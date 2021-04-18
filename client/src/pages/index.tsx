@@ -70,6 +70,7 @@ const Home = (): JSX.Element => {
             onClick={handleDispatchUnit}
             fullWidth
             label="Dispatch"
+            color="primary"
           />
         </Box>
       </form>
