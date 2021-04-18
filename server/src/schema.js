@@ -15,11 +15,7 @@ const typeDefs = gql`
     effect: Int
     skill_name: String
     is_act2: Boolean
-    members: [SkillMembers]!
-  }
-  type SkillMembers {
-    id: Int
-    name: String
+    members: [Member]!
   }
 `
 

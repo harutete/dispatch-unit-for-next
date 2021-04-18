@@ -35,13 +35,7 @@ export type LinkSkill = {
   effect?: Maybe<Scalars['Int']>;
   skill_name?: Maybe<Scalars['String']>;
   is_act2?: Maybe<Scalars['Boolean']>;
-  members: Array<Maybe<SkillMembers>>;
-};
-
-export type SkillMembers = {
-  __typename?: 'SkillMembers';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
+  members: Array<Maybe<Member>>;
 };
 
 export enum CacheControlScope {
@@ -62,8 +56,8 @@ export type CompanyMembersQuery = (
     { __typename?: 'LinkSkill' }
     & Pick<LinkSkill, 'category' | 'category_name' | 'effect' | 'skill_name' | 'is_act2'>
     & { members: Array<Maybe<(
-      { __typename?: 'SkillMembers' }
-      & Pick<SkillMembers, 'id' | 'name'>
+      { __typename?: 'Member' }
+      & Pick<Member, 'member_id' | 'member_name'>
     )>> }
   )>> }
 );
@@ -82,8 +76,8 @@ export const CompanyMembersDocument = gql`
     skill_name
     is_act2
     members {
-      id
-      name
+      member_id
+      member_name
     }
   }
 }
